@@ -131,6 +131,14 @@ client_get_appid(Client *c)
 	return c->surface.xdg->toplevel->app_id;
 }
 
+static inline int
+client_get_pid(Client *c)
+{
+	pid_t pid;
+	wl_client_get_credentials(c->surface.xdg->client->client, &pid, NULL, NULL);
+	return pid;
+}
+
 static inline void
 client_get_clip(Client *c, struct wlr_box *clip)
 {
